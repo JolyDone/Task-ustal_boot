@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CarService {
-    private List<Car> carList;
+public class CarDaolmp implements CarDao{
+    private final List<Car> carList;
 
-    public CarService(){
+    public CarDaolmp(){
         carList = new ArrayList<>();
         carList.add(new Car("Toyota", 1990, "good"));
         carList.add(new Car("BMW", 2003, "best"));
