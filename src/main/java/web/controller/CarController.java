@@ -13,7 +13,8 @@ import java.util.List;
 @Controller
 public class CarController {
     @Autowired
-    private final CarServicelmp carServicelmp;
+    private CarServicelmp carServicelmp;
+
 
     public CarController(CarServicelmp carServicelmp){
         this.carServicelmp = carServicelmp;
@@ -23,6 +24,13 @@ public class CarController {
     @GetMapping(value = "/cars")
     public String getCars(@RequestParam(value = "count", required = false, defaultValue = "0") int count, ModelMap model) {
         List<Car> cars = carServicelmp.getCarList(count);
+        model.addAttribute("cars", cars);
+        return "cars";
+    }
+
+    @GetMapping(value = "/clearcars")
+    public String getCars(ModelMap model) {
+        List<Car> cars = carServicelmp.clearCarList();
         model.addAttribute("cars", cars);
         return "cars";
     }

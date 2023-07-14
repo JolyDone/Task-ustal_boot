@@ -34,4 +34,14 @@ public class Car {
     public void setScore(String score) {
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name='" + name + '\'' +
+                ", year=" + year +
+                ", score='" + score + '\'' +
+                '}';
+    }
 }
+
