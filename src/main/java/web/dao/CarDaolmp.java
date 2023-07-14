@@ -13,7 +13,9 @@ public class CarDaolmp implements CarDao{
             new Car("BMW", 2003, "best"),
             new Car("Mersedes", 1941, "oh..."),
             new Car("Pagani", 2020, "ITSTABEST"),
-            new Car("Honda", 1999, "soso"));
+            new Car("Honda", 1999, "soso"),
+            new Car("MrBeanCar", 1999, "sick"),
+            new Car("Honda Civic", 1999, "soso"));
 
     @Override
     public List<Car> getCarList(){

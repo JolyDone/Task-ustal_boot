@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class CarServicelmp implements CarService{
 
-    private final CarDaolmp carDaolmp;
+    private CarDaolmp carDaolmp;
 
     public CarServicelmp(CarDaolmp carDaolmp) {
         this.carDaolmp = carDaolmp;
@@ -21,7 +21,7 @@ public class CarServicelmp implements CarService{
     @Override
     public List<Car> getCarList(int count){
         List<Car> carList = carDaolmp.getCarList();
-        if (count==0 || count>5){
+        if (count==0 || count>=5){
             return carList;
         }else {
             return carList.subList(0, count);
