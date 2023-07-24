@@ -22,16 +22,6 @@ public class HelloController {
 	public HelloController(UserServiceImp userServiceImp) {
 		this.userServiceImp = userServiceImp;
 	}
-
-//	@GetMapping(value = "/")
-//	public String printWelcome(ModelMap model) {
-//		List<String> messages = new ArrayList<>();
-//		messages.add("Hello!");
-//		messages.add("I'm Spring MVC application");
-//		messages.add("5.2.0 version by sep'19 ");
-//		model.addAttribute("messages", messages);
-//		return "index";
-//	}
 	@GetMapping()
 	public String listUsers(Model model) {
 		model.addAttribute("users", userServiceImp.findAll());
@@ -42,8 +32,9 @@ public class HelloController {
 		return "/new";
 	}
 	@PostMapping()
-	public String create(@ModelAttribute("user") User user){
-
+	public String create(@ModelAttribute("user") @Valid User user, BindingResult bindingResult){
+		if (bindingResult.hasErrors())
+			return "/new";
 		userServiceImp.save(user);
 		return "redirect:/user";
 	}
@@ -60,7 +51,9 @@ public class HelloController {
 		return "/edit";
 	}
 	@PatchMapping("/{id}")
-	public String update(@ModelAttribute("user") User user, @PathVariable("id") long id){
+	public String update(@ModelAttribute("user") @Valid User user, @PathVariable("id") long id, BindingResult bindingResult){
+		if (bindingResult.hasErrors())
+			return "/edit";
 		userServiceImp.edit(id, user);
 		return "redirect:/user";
 	}
