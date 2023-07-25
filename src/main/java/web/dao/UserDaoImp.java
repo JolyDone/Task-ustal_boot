@@ -13,30 +13,32 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class UserDaoImp {
+public class UserDaoImp implements UserDao{
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Override
     public List<User> findAll(){
         return entityManager.createQuery("from User", User.class)
                 .getResultList();
     }
 
+    @Override
     public User find(long id){
         return entityManager.find(User.class, id);
     }
 
+    @Override
     public void save(User user){
         entityManager.persist(user);
     }
-
+    @Override
     public void delete(long uid){
         User userDelete = entityManager.find(User.class,uid);
         entityManager.remove(userDelete);
     }
-
-
+    @Override
     public void update(long id, User user){
         User updateUser = entityManager.find(User.class, id);
         if(updateUser!=null){
